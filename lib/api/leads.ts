@@ -1,5 +1,5 @@
 /**
- * Leads API — civil engineering companies discovered by the scraper.
+ * leads api — civil engineering companies discovered by the scraper.
  */
 
 import { apiClient } from "./client";
