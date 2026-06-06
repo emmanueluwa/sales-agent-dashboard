@@ -19,9 +19,9 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="bg-background text-foreground antialiased">
         <Providers>
-          <div className="flex h-screen overflow-hidden">
+          <div className="flex min-h-screen lg:h-screen lg:overflow-hidden">
             <Sidebar />
-            <main className="flex-1 overflow-y-autopt-14 pt-14 lg:pt-0">
+            <main className="flex-1 overflow-y-auto pt-14 lg:pt-0 min-h-screen lg:min-h-0">
               {children}
             </main>
           </div>
