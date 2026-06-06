@@ -75,7 +75,7 @@ export async function getOutreach(params?: {
   limit?: number;
   offset?: number;
 }): Promise<OutreachResponse> {
-  const { data } = await apiClient.get<OutreachResponse>("/api/outreach", {
+  const { data } = await apiClient.get<OutreachResponse>("/api/outreach/", {
     params,
   });
   return data;
