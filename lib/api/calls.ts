@@ -67,7 +67,7 @@ export interface UpcomingCallsResponse {
 }
 
 export async function getCalls(): Promise<CallsResponse> {
-  const { data } = await apiClient.get<CallsResponse>("/api/calls/");
+  const { data } = await apiClient.get<CallsResponse>("/api/calls");
   return data;
 }
 

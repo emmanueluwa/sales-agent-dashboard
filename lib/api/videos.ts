@@ -38,7 +38,7 @@ export interface VideoUpdateResponse {
 }
 
 export async function getVideos(): Promise<VideosResponse> {
-  const { data } = await apiClient.get<VideosResponse>("/api/videos/");
+  const { data } = await apiClient.get<VideosResponse>("/api/videos");
   return data;
 }
 
