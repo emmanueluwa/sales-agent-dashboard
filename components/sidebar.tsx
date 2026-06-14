@@ -9,6 +9,7 @@ import {
   Video,
   Mail,
   Phone,
+  AtSign,
   Menu,
   X,
 } from "lucide-react";
@@ -19,6 +20,7 @@ const navItems = [
   { label: "Leads", href: "/leads", icon: Users },
   { label: "Videos", href: "/videos", icon: Video },
   { label: "Outreach", href: "/outreach", icon: Mail },
+  { label: "No Email", href: "/no-email", icon: AtSign },
   { label: "Calls", href: "/calls", icon: Phone },
 ];
 
