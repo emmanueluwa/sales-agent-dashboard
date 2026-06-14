@@ -25,7 +25,7 @@ export interface NoEmailResponse {
 }
 
 export async function getNoEmailLeads(): Promise<NoEmailResponse> {
-  const { data } = await apiClient.get<NoEmailResponse>("/api/no-email");
+  const { data } = await apiClient.get<NoEmailResponse>("/api/no-email/");
   return data;
 }
 
