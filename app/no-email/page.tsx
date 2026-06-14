@@ -74,10 +74,10 @@ export default function NoEmailPage() {
     <div className="px-4 py-6 sm:px-6 lg:p-8 max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">
+        <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-balance">
           No Email
         </h1>
-        <p className="text-sm text-muted-foreground mt-1">
+        <p className="text-sm text-muted-foreground mt-1 text-pretty">
           {leads.length} leads waiting for an email address. Add an email to
           queue them for outreach automatically.
         </p>
@@ -88,12 +88,12 @@ export default function NoEmailPage() {
           {Array.from({ length: 5 }).map((_, i) => (
             <div
               key={i}
-              className="rounded-xl border bg-card p-5 h-24 animate-pulse"
+              className="rounded-xl border bg-card p-4 sm:p-5 h-24 animate-pulse"
             />
           ))}
         </div>
       ) : leads.length === 0 ? (
-        <div className="rounded-xl border bg-card p-12 text-center">
+        <div className="rounded-xl border bg-card p-8 sm:p-12 text-center">
           <AtSign className="w-8 h-8 text-muted-foreground mx-auto mb-3" />
           <div className="text-sm text-muted-foreground">
             No leads missing emails.
@@ -104,31 +104,34 @@ export default function NoEmailPage() {
           {leads.map((lead) => (
             <div
               key={lead.id}
-              className="rounded-xl border bg-card p-5 space-y-3"
+              className="rounded-xl border bg-card p-4 sm:p-5 space-y-3"
             >
               {/* Company info */}
-              <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <div className="font-medium">{lead.company_name}</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">
+              <div className="flex items-start justify-between gap-3 sm:gap-4">
+                <div className="min-w-0 flex-1">
+                  <div className="font-medium break-words">
+                    {lead.company_name}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-0.5 break-words">
                     {lead.city}, {lead.state} ·{" "}
                     {formatDocType(lead.document_type)}
                   </div>
                   {lead.decision_maker_name && (
-                    <div className="text-xs text-muted-foreground mt-0.5">
+                    <div className="text-xs text-muted-foreground mt-0.5 break-words">
                       {lead.decision_maker_name}
                       {lead.decision_maker_title &&
                         ` — ${lead.decision_maker_title}`}
                     </div>
                   )}
                 </div>
-                <div className="flex items-center gap-2 shrink-0">
+                <div className="flex items-center gap-1 sm:gap-2 shrink-0">
                   {lead.website && (
                     <a
                       href={lead.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label="Open website"
+                      className="p-1.5 -m-1.5 text-muted-foreground hover:text-foreground transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
                     </a>
@@ -138,7 +141,8 @@ export default function NoEmailPage() {
                       href={lead.linkedin_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label="Open LinkedIn profile"
+                      className="p-1.5 -m-1.5 text-muted-foreground hover:text-foreground transition-colors"
                     >
                       <Link2 className="w-4 h-4" />
                     </a>
@@ -171,14 +175,7 @@ export default function NoEmailPage() {
                     className="w-full text-sm bg-background border rounded-lg px-3 py-2 outline-none focus:ring-1 focus:ring-primary"
                     autoFocus
                   />
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleSave(lead.id)}
-                      disabled={updateMutation.isPending}
-                      className="text-sm bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:opacity-90 disabled:opacity-50 transition-opacity"
-                    >
-                      {updateMutation.isPending ? "Saving..." : "Save & Queue"}
-                    </button>
+                  <div className="flex flex-col-reverse sm:flex-row gap-2">
                     <button
                       onClick={() => {
                         setEditingId(null);
@@ -186,9 +183,16 @@ export default function NoEmailPage() {
                         setNameInput("");
                         setLinkedinInput("");
                       }}
-                      className="text-sm text-muted-foreground hover:text-foreground px-3 py-2 transition-colors"
+                      className="text-sm text-muted-foreground hover:text-foreground px-3 py-2 transition-colors sm:order-1"
                     >
                       Cancel
+                    </button>
+                    <button
+                      onClick={() => handleSave(lead.id)}
+                      disabled={updateMutation.isPending}
+                      className="text-sm bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:opacity-90 disabled:opacity-50 transition-opacity w-full sm:w-auto sm:order-2"
+                    >
+                      {updateMutation.isPending ? "Saving..." : "Save & Queue"}
                     </button>
                   </div>
                 </div>
